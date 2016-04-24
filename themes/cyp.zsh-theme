@@ -1,7 +1,10 @@
 returncode="%(?..%{$fg[red]%}[%?])"
-#PROMPT='${returncode}%{$fg_no_bold[yellow]%}%m%{$fg_no_bold[magenta]%}➜%{$fg_no_bold[green]%}%3~$(git_prompt_info)%{$reset_color%}» '
-PROMPT='${returncode}%{$fg_no_bold[yellow]%}λ %{$fg_no_bold[green]%}%0~$(git_prompt_info)%{$reset_color%}» '
-#RPROMPT='[%*]'
+
+if [[ -n $SSH_CONNECTION ]]; then
+  PROMPT='${returncode}%{$fg_no_bold[yellow]%}%m %{$fg_no_bold[green]%}%0~$(git_prompt_info)%{$reset_color%}» '
+else
+  PROMPT='${returncode}%{$fg_no_bold[yellow]%}λ %{$fg_no_bold[green]%}%0~$(git_prompt_info)%{$reset_color%}» '
+fi
 
 # git theming
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}(%{$fg_no_bold[red]%}"
